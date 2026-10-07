@@ -1,0 +1,56 @@
+CM Validatie TX en RX - Inclusief Hardcoded NH (Near H-field) Card
+CM  ++ Shield added for closed-case verification (see xy_plane_rotated_shield.m)
+CM  rx loop
+CM  tx loop
+CE
+GA	1	36	0.05	0	360	0.001
+GM	0	0	90	0	0	0	0	0.30	1
+GA	2	36	0.15	0	360	0.001
+GM	0	0	90	0	0	0	0	0	2
+GM    0    0    15.0000    0    0    0.0000    0.0776    0.0102    2
+CM  -- shield: 14 concentric conducting rings @ z=0.15 m
+CM  -- (Al, sigma=35000000 S/m, t=0.001587 m -- matches xy_plane_rotated_shield.m)
+CM  -- pure-azimuthal wire-grid approx. of Moser's infinite shield plane:
+CM  -- rings only (no radial spokes needed -- eddy currents are purely
+CM  -- azimuthal by symmetry). Ring wire radius sized so pi*a_w^2 = t *
+CM  -- (local radial ring spacing), preserving the sheet's DC conductance.
+CM  -- Shield z-position does not affect the exact SE per Moser; placed
+CM  -- at the TX-RX midpoint purely to keep it away from both loops.
+GA	10	20	0.12000	0	360	0.003188
+GM	0	0	90	0	0	0	0	0.1500	10
+GA	11	20	0.14012	0	360	0.003319
+GM	0	0	90	0	0	0	0	0.1500	11
+GA	12	20	0.16361	0	360	0.003587
+GM	0	0	90	0	0	0	0	0.1500	12
+GA	13	20	0.19104	0	360	0.003876
+GM	0	0	90	0	0	0	0	0.1500	13
+GA	14	20	0.22306	0	360	0.004188
+GM	0	0	90	0	0	0	0	0.1500	14
+GA	15	20	0.26046	0	360	0.004526
+GM	0	0	90	0	0	0	0	0.1500	15
+GA	16	20	0.30413	0	360	0.004890
+GM	0	0	90	0	0	0	0	0.1500	16
+GA	17	20	0.35511	0	360	0.005284
+GM	0	0	90	0	0	0	0	0.1500	17
+GA	18	20	0.41465	0	360	0.005710
+GM	0	0	90	0	0	0	0	0.1500	18
+GA	19	20	0.48416	0	360	0.006170
+GM	0	0	90	0	0	0	0	0.1500	19
+GA	20	20	0.56533	0	360	0.006667
+GM	0	0	90	0	0	0	0	0.1500	20
+GA	21	20	0.66011	0	360	0.007205
+GM	0	0	90	0	0	0	0	0.1500	21
+GA	22	20	0.77078	0	360	0.007785
+GM	0	0	90	0	0	0	0	0.1500	22
+GA	23	20	0.90000	0	360	0.008081
+GM	0	0	90	0	0	0	0	0.1500	23
+GE	0
+GN	-1
+EK
+LD	5	0	73	352	35000000	0	0
+CM LD  0  1  1  1  1000000  0  0
+
+EX	6	2	1	0	1	0	0
+FR	0	0	0	0	10	0
+NH    0    41    41    1    -0.15    -0.15    0.30    0.0075    0.0075    0
+EN

@@ -1,0 +1,11 @@
+CM Validation Open Loop - Normalized R=0.15
+CM Equivalent to MATLAB: R1=0.15m @ 10MHz
+CE
+GA	1	50	0.15	0	360	0.0001
+
+GE	0
+GN	-1
+EK
+EX	0	1	1	0	1	0	0
+FR	0	0	0	0	10	0
+EN

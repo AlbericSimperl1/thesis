@@ -1,0 +1,16 @@
+CM Validatie TX en RX - Gecorrigeerde hoogtes en stand
+CM rx loop
+CM tx loop
+CE
+GA    1    36    0.05    0    360    0.001
+GM    0    0    90.0    0.0    0.0    0.0000    0.0000    0.3000
+GA    2    36    0.15    0    360    0.001
+GM    0    0    90.0    0.0    0.0    0.0776    0.0102    0.0000
+GE    0
+LD    0    0    1    0    60
+GN    -1
+EK
+EX    0    2    1    0    1    0    0
+FR    0    0    0    0    10    0
+NH    0    200    200    1    -0.2    -0.2    0.30    0.002    0.002    0
+EN

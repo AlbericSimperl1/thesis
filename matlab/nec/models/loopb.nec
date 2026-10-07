@@ -1,0 +1,17 @@
+CM Validatie TX en RX - RX Plat op Z=0.30m (Hoek = 10 graden, Afstand = 0.30m)
+CE
+' 1. RX Loop (Tag 1) - Plat in het XY-vlak centraal op Z = 0.30m
+GA    1    50    0.05    0    360    0.0001
+GM    0    0    90    0    0    0    0    0.30    1
+
+' 2. TX Loop (Tag 2) - Gekanteld over 10 deg (beide assen) op 30cm afstand
+GA    2    50    0.010    0    360    0.0001
+GM    0    0    90    0    0    0    0    0    2
+GM    0    0    10    0    0    0    0.0521    0.0091    2
+
+GE    0
+GN    -1
+EK
+EX    4    2    1    0    1.0    0    0
+FR    0    0    0    0    10    0
+EN
