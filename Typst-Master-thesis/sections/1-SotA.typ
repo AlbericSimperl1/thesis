@@ -31,3 +31,29 @@ This current's direction being such that the induced field will oppose that of t
   image("../images/schildE.png", width: 50%),
   caption: [Eddy-current shielding principle.],
 )
+
+Magnetically conductive shields, known as flux-shunting shields, rely on the material's reluctance $cal(R)$. Materials with a high relative permeability $mu_r$ provide a low reluctance path for the magnetic field lines. This follows from
+$ cal(R) = l / (mu_0 mu_r A). $
+
+The relation between
+reluctance, flux and its driving source is described by Hopkinson's law,
+
+$ Theta = Phi cal(R), $ <eq:hopkinson>
+
+where $Theta$ is the magnetomotive force and $Phi$ the magnetic flux. This is
+the magnetic analogue of Ohm's law, with $Theta$, $Phi$ and $cal(R)$
+corresponding to voltage, current and resistance, respectively.
+
+Just as current divides over parallel resistors, the flux divides over parallel
+magnetic paths. For a shield placed in the field, the flux through the air path
+and through the shield path is related by
+
+$ Phi_"shield" / Phi_"air" = cal(R)_"air" / cal(R)_"shield". $ <eq:flux-division>
+
+Since $cal(R)_"shield" << cal(R)_"air"$ for $mu_r >> 1$, almost all flux
+follows the shield: the field takes the path of least reluctance. This is observed as a deflection of the field lines into the shield material.
+
+#figure(
+  image("../images/schildM.png", width: 50%),
+  caption: [Flux-shunting shielding principle.],
+)
