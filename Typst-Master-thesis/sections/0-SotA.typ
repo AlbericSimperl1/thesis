@@ -31,5 +31,3 @@ This current's direction being such that the induced field will oppose that of t
   image("../images/schildE.png", width: 50%),
   caption: [Eddy-current shielding principle.],
 )
-
-

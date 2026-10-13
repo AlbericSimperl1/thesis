@@ -74,6 +74,7 @@
     ($bold(B)_i$, "Magnetic field in medium i"),
     ($bold(E)_i$, "Electric field in medium i"),
     ($bold(A)_i$, "First order vector potential in medium i"),
+    ($bold(U)_i$, "Second order vector potential in medium i"),
   ),
 
   bibliography: bibliography("references.bib"),
@@ -113,6 +114,6 @@
   }
 }
 
-#include "sections/SotA.typ"
+#include "sections/0-SotA.typ"
 #include "sections/chapter-1.typ"
 #include "sections/conclusion.typ"
