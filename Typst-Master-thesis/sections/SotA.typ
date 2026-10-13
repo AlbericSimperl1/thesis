@@ -1,12 +1,35 @@
 = State of the Art
 
 == What is shielding?
-Electromagnetic shielding is a means of improving electromagnetic compatibility (EMC) using an electromagnetic (EM) shield. Using this shield, it is possible to reduce the electromagnetic field intensity within a prescribed region @celozziBOEK. Its use cases range from military applications to civil interests. Within this broad range every application aims to achieve electric and magnetic immunity to ensure EMC.
+Electromagnetic shielding is a means of improving electromagnetic compatibility (EMC) using an electromagnetic (EM) shield. Using this shield, it is possible to reduce the electromagnetic field intensity within a prescribed region @celozziBOEK. A shield's effectiveness is denoted by it's shielding effectiveness (SE). The definition is analogous for magnetic and electric fields,
+$ "SE" = 20 log_10 lr(|frac(H_("open"), H_("closed"))|)," [dB]". $
+Depending on the material used, a shield can reflect, absorb or redirect the incident field. Shielding is used whenever a field source and/or a sensitive region must be isolated from each other.
+In military settings it can be used to guarantee communication security, thus protecting sensitive information transmitted using electromagnetic waves.
+Medically use cases are found isolating medical MRI and ECG/EEG units, which need to be strictly enclosed.
+Furthermore, active implanted medical devices such as pacemakers and cardioverters require an enclosure which protects these sensitive detection circuits.
+Although shielding is used is virtually any field and whether this happens through immunity, emission control, privacy or even human safety, the objective is always ensuring EMC.
 
-In military settings it can be used to guarantee communication security, thus protecting sensitive information transmitted using electromagnetic waves. Implementations within the medical sector are abundant as well, this ranges from the inwards isolation of units where bio-electric signals are measured using ECG and EEG to MRI machines where an immense magnetic field is generated. Keeping this field contained within the imaging unit is necessary to prevent EM forces acting on magnetizable materials nearby. While these applications are found within controlled hospital environments, we rarely find ourselves within such environments.
 
-Our world is filled with electromagnetic radiation and waves wherever we go. This could cause issues for people using active implanted medical devices (AIMDs), such as pacemakers and cardioverters. With the rapid rise of both electric vehicles and power electronics the risk of EM interference (EMI) follows. These vehicles produce low frequency EM fields. When such radiation can freely enter a human body, EMI might occur, hindering the performance of the sensitive detection circuits within such AIMDs. In everyday practice these effects are small to negligible, but during prolonged intense exposure the risks rise considerably. False signals could result in false detections of cardiac arrhythmia, after which the device will act upon these signals, thus giving unneeded stimulations or suppressing the pacing needed. This would then lead to arrhythmic beats. Luckily these risks have reduced to the point where driving electric vehicles shouldn't cause any problems.
 
-Though not electronic, humans are also sensitive to these EM fields. Extremely low frequency EM fields have been classified as possibly carcinogenic to humans. Some studies suggest a weak correlation between extended exposure to magnetic fields higher than 0.3 $mu$T and childhood leukemia @leukemia @who.
+== Physics behind near-field magnetic shielding
+For electrical shielding, the situation is quite trivial compared to its magnetic counterpart. When using a good conductor for a shield, we find a low impedance surface off of which incoming electric fields get reflected. This mechanism is mainly caused by charge redistributions and reflections instead of diffusion.
 
-In conclusion, EM shielding has become vital in the protection of our electronically dominant world. Whether it is used for the safety of sensitive electronics, isolating environments from both outwards and inward radiation or protecting transmission lines to ensure both human safety as well as a guarantee on private data transmission.
+=== Electrical and magnetic shields
+As stated before, the behaviour of a shield is highly dependent on its material characteristics.
+With the biggest distinction coming from it's EM behaviour, we find electrically and magnetically conducting shields.
+
+When looking at electrically conductive shields, also called eddy-current shields, the behaviour at lower frequencies is heavily dependent on the wave impedance and diffusion.
+In the lower frequency ranges this impedance will be low, meaning magnetic surface reflections will be weak.
+The shields therefore rely on eddy-currents induced by the incident magnetic field. This follows directly from Faraday's Law,
+
+$ nabla times bold(E) = - frac(partial bold(B), partial t) $
+which states that a time-varying magnetic field induces an electric field. This field drives the free charges within the conductor, producing an induced current.
+When a magnetic field line falls into a screen, the induced eddy-currents will form a closed loop around said field line.
+This current's direction being such that the induced field will oppose that of the incident magnetic field, following Lenz' law.
+
+#figure(
+  image("../images/schildE.png", width: 50%),
+  caption: [Eddy-current shielding principle.],
+)
+
+

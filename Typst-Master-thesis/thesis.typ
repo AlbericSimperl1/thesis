@@ -66,6 +66,8 @@
     ("SE", "Shielding Effectiveness"),
     ("RX", "Receiving"),
     ("TX", "Transmitting"),
+    ("LF", "Low frequency"),
+    ("NF", "Near-field"),
   ),
   symbols: (
     ($J_n (.)$, "Bessel function of the first kind and order n"),
