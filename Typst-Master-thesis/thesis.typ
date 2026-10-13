@@ -7,7 +7,7 @@
 
 #show: template.with(
   title: "Analytical Evaluation of Magnetic Shielding Effectiveness of Infinite Planar Screens under Near-Field Conditions",
-  subtitle: "State of the Art",
+  // subtitle: "State of the Art",
 
   // Starting year of the academic year, or a (start, end) pair.
   academic-year: (2026, 2027),
@@ -114,6 +114,5 @@
   }
 }
 
-#include "sections/0-SotA.typ"
-#include "sections/chapter-1.typ"
+#include "sections/1-SotA.typ"
 #include "sections/conclusion.typ"
