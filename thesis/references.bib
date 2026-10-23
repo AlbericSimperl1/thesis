@@ -1,0 +1,138 @@
+% ---------------------------------------------------------------------------
+% CORRECTED entries -- these replace the existing moser1 / moser2 / celozziBOEK
+% entries in references.bib. The originals were typed as @book but carry a
+% `journal` field, so Typst typesets them as books and drops the journal,
+% volume and issue. Journal papers must be @article.
+%
+% celozziBOEK also contained a literal "\\&amp;" in the publisher field, which
+% renders verbatim in the output. Fixed below.
+% ---------------------------------------------------------------------------
+
+@article{moser1,
+  author  = {Moser, J. Ronald},
+  title   = {Low-frequency shielding of a circular loop electromagnetic field source},
+  journal = {IEEE Transactions on Electromagnetic Compatibility},
+  volume  = {EMC-9},
+  number  = {1},
+  pages   = {6--18},
+  month   = {March},
+  year    = {1967},
+  doi     = {10.1109/TEMC.1967.303741}
+}
+
+@article{moser2,
+  author  = {Hansen, R. C. and Moser, J. Ronald},
+  title   = {Loop-shield-loop shielding effectiveness},
+  journal = {IEEE Transactions on Electromagnetic Compatibility},
+  volume  = {41},
+  number  = {2},
+  pages   = {144--146},
+  month   = {May},
+  year    = {1999},
+  doi     = {10.1109/15.775426}
+}
+
+@book{celozziBOEK,
+  author    = {Celozzi, Salvatore and Araneo, Rodolfo and Lovat, Giampiero},
+  title     = {Electromagnetic Shielding},
+  series    = {Wiley Series in Microwave and Optical Engineering},
+  publisher = {IEEE Press / John Wiley and Sons},
+  address   = {Hoboken, NJ, USA},
+  year      = {2008},
+  isbn      = {978-0-470-05536-6},
+  doi       = {10.1002/9780470268483}
+}
+
+% ---------------------------------------------------------------------------
+% NEW entries cited by the rewritten State of the Art.
+%
+% The two papers you have on disk but had not yet entered: moser_FI.pdf is a
+% SEPARATE 1988 paper, not a copy of the 1967 one, and araneo2002_celozzi.pdf
+% was missing entirely. (moser_FL.pdf is a duplicate of
+% Loop-shield-loop_shielding_effectiveness.pdf -- same paper, already cited
+% as moser2.)
+% ---------------------------------------------------------------------------
+
+@article{moser1988,
+  author  = {Moser, J. Ronald},
+  title   = {Low-frequency low-impedance electromagnetic shielding},
+  journal = {IEEE Transactions on Electromagnetic Compatibility},
+  volume  = {30},
+  number  = {3},
+  pages   = {202--210},
+  month   = {August},
+  year    = {1988},
+  doi     = {10.1109/15.3303}
+}
+
+@article{araneo2002,
+  author  = {Araneo, Rodolfo and Celozzi, Salvatore},
+  title   = {Exact solution of the low-frequency coplanar loops shielding configuration},
+  journal = {IEE Proceedings -- Science, Measurement and Technology},
+  volume  = {149},
+  number  = {1},
+  pages   = {37--44},
+  month   = {January},
+  year    = {2002},
+  doi     = {10.1049/ip-smt:20020164}
+}
+
+% --- historical sources, cited through the papers above --------------------
+% VERIFY the page range of levy1936 and the edition/year of schelkunoff1943
+% against a copy before submission; both are cited second-hand here.
+
+@article{levy1936,
+  author  = {Levy, S.},
+  title   = {Electromagnetic shielding effect of an infinite plane conducting
+             sheet placed between circular coaxial coils},
+  journal = {Proceedings of the Institute of Radio Engineers},
+  volume  = {24},
+  number  = {6},
+  pages   = {923--941},
+  month   = {June},
+  year    = {1936},
+  doi     = {10.1109/JRPROC.1936.226514}
+}
+
+@book{schelkunoff1943,
+  author    = {Schelkunoff, Sergei A.},
+  title     = {Electromagnetic Waves},
+  publisher = {D. Van Nostrand Company},
+  address   = {New York, NY, USA},
+  year      = {1943}
+}
+
+% --- measurement standards ------------------------------------------------
+% VERIFY the current edition of IEEE Std 299 and the exact designation of the
+% NSA and MIL specifications; both older documents are superseded and are
+% cited here as the standards referenced by Moser and by Araneo & Celozzi.
+
+@techreport{nsa656,
+  author      = {{National Security Agency}},
+  title       = {Specification for {RF} Shielded Enclosures for Communications
+                 Equipment: General Specification},
+  number      = {NSA No. 65-6},
+  institution = {National Security Agency},
+  address     = {Fort George G. Meade, MD, USA},
+  year        = {1964}
+}
+
+@techreport{milstd285,
+  author      = {{United States Department of Defense}},
+  title       = {Attenuation Measurements for Enclosures, Electromagnetic
+                 Shielding, for Electronic Test Purposes, Method of},
+  number      = {MIL-STD-285},
+  institution = {United States Department of Defense},
+  year        = {1956}
+}
+
+@techreport{ieee299,
+  author      = {{IEEE}},
+  title       = {{IEEE} Standard Method for Measuring the Effectiveness of
+                 Electromagnetic Shielding Enclosures},
+  number      = {IEEE Std 299-2006},
+  institution = {Institute of Electrical and Electronics Engineers},
+  address     = {New York, NY, USA},
+  year        = {2006},
+  doi         = {10.1109/IEEESTD.2007.323387}
+}
