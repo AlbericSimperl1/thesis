@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><defs><marker id="a000" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#000"/></marker><marker id="a1f5fbf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#1f5fbf"/></marker><marker id="ac62828" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#c62828"/></marker></defs>
+<line x1="35.0" y1="270.0" x2="370.0" y2="270.0" stroke="#000" stroke-width="1.2" marker-end="url(#a000)"/>
+<text x="380.0" y="272.0" fill="#000" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-size="17" text-anchor="middle" dominant-baseline="middle">x</text>
+<line x1="50.0" y1="285.0" x2="50.0" y2="40.0" stroke="#000" stroke-width="1.2" marker-end="url(#a000)"/>
+<text x="50.0" y="28.0" fill="#000" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-size="17" text-anchor="middle" dominant-baseline="middle">y</text>
+<line x1="50.0" y1="270.0" x2="254.8" y2="126.6" stroke="#555" stroke-width="1.2"/>
+<text x="144.4" y="184.3" fill="#000" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-size="17" text-anchor="middle" dominant-baseline="middle">ρ</text>
+<line x1="254.8" y1="126.6" x2="254.8" y2="270.0" stroke="#555" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="254.8" y1="126.6" x2="50.0" y2="126.6" stroke="#555" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="254.8" y="288.0" fill="#000" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-size="17" text-anchor="middle" dominant-baseline="middle">x</text>
+<text x="36.0" y="126.6" fill="#000" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-size="17" text-anchor="middle" dominant-baseline="middle">y</text>
+<path d="M130,270 A80,80 0 0 0 115.5,224.1" fill="none" stroke="#000" stroke-width="1"/>
+<text x="140.6" y="241.4" fill="#000" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-size="17" text-anchor="middle" dominant-baseline="middle">φ</text>
+<circle cx="254.8" cy="126.6" r="3" fill="#000"/>
+<line x1="50.0" y1="270.0" x2="105.0" y2="270.0" stroke="#1f5fbf" stroke-width="2.2" marker-end="url(#a1f5fbf)"/>
+<text x="101.0" y="288.0" fill="#1f5fbf" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-weight="bold" font-size="17" text-anchor="middle" dominant-baseline="middle">x̂</text>
+<line x1="50.0" y1="270.0" x2="50.0" y2="215.0" stroke="#1f5fbf" stroke-width="2.2" marker-end="url(#a1f5fbf)"/>
+<text x="34.0" y="221.0" fill="#1f5fbf" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-weight="bold" font-size="17" text-anchor="middle" dominant-baseline="middle">ŷ</text>
+<line x1="254.8" y1="126.6" x2="299.8" y2="95.1" stroke="#c62828" stroke-width="2.2" marker-end="url(#ac62828)"/>
+<text x="312.9" y="85.9" fill="#c62828" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-weight="bold" font-size="17" text-anchor="middle" dominant-baseline="middle">ρ̂</text>
+<line x1="254.8" y1="126.6" x2="223.2" y2="81.6" stroke="#c62828" stroke-width="2.2" marker-end="url(#ac62828)"/>
+<text x="215.2" y="70.1" fill="#c62828" font-family="New Computer Modern, Libertinus Serif, serif" font-style="italic" font-weight="bold" font-size="17" text-anchor="middle" dominant-baseline="middle">φ̂</text>
+</svg>

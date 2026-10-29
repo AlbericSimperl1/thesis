@@ -114,4 +114,13 @@
   }
 }
 
-#include "sections/in_ph_sota.typ" // splitsen!!!!!!!
+// Chapter-relative equation numbers, mirroring the figure numbering in src/lib.typ.
+#set math.equation(numbering: it => context {
+  let count = counter(heading).get()
+  numbering("(1.1)", count.at(0), it)
+})
+
+#include "sections/1-intro.typ"
+#include "sections/2-physics.typ"
+#include "sections/3-SotA.typ"
+#include "sections/4-generalisation.typ"
