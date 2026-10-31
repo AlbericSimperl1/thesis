@@ -2,6 +2,16 @@
 
 The closed-form results of @sec:literature give the field behind the shield only in the coaxial configuration, observed either in a point on the axis @moser1 @moser1988 or with a receiving loop that is coaxial with and parallel to the source @moser2. In this chapter the receiving loop is given an arbitrary position and orientation. No new boundary-value problem has to be solved for this: the axisymmetric solution behind the shield is retained, and only the receiving loop is moved by a rigid transformation. The flux it captures then follows from a single line integral.
 
+The only result taken from the literature is Moser's axisymmetric vector potential behind the shield. Everything built on it in this chapter is the contribution of this thesis:
+
+- the Cartesian and coordinate-free form of that potential, including its regular behaviour on the axis;
+- the description of the receiving loop as a rigid transformation in $"SE"(3)$;
+- the flux through a loop in an arbitrary pose, reduced via Stokes' theorem to one integral over the loop;
+- the invariances that reduce the six pose parameters to four;
+- an orientation parametrisation based on unit quaternions, replacing Euler angles;
+- the condition under which the result is valid;
+- the SE for an arbitrary pose, and the poses for which it is not defined.
+
 == Assumptions and geometry <sec:gen-geometry>
 The global frame $(O; hat(bold(x)), hat(bold(y)), hat(bold(z)))$ is attached to the transmitting loop, a filamentary circular loop of radius $a$ carrying a current $i$, centred in $O$ in the plane $z = 0$. The shield is the slab $b <= z <= c$ of @sec:literature, of thickness $t = c - b$, so that region 3 is the half-space $z > c$. The receiving loop is a filamentary circular loop of radius $R$. The analysis rests on four assumptions.
 
@@ -20,24 +30,90 @@ $ <eq:gen-a3>
 
 with $mu = mu_0 mu_r$, $tau$ and $tau_0$ from @eq:moser-tau and $C$ from @eq:moser-c. Without the shield, $A_phi$ is given by @eq:moser-a with $r$ replaced by $rho$. The derivation below only uses that $bold(A)$ is azimuthal and axisymmetric, and therefore holds for both cases.
 
-To evaluate @eq:gen-a3 in a Cartesian point $(x, y, z)$, both the argument and the unit vector are transformed, see @fig:gen-unit-vectors. The argument becomes $rho = sqrt(x^2 + y^2)$, and with $cos phi = x \/ rho$ and $sin phi = y \/ rho$ the azimuthal unit vector is $hat(bold(phi)) = -sin phi thin hat(bold(x)) + cos phi thin hat(bold(y))$, so that
+== Unit vector transform <sec:gen-unit-vectors>
+To evaluate @eq:gen-a3 in a Cartesian point $(x, y, z)$, both the argument $rho$ and the unit vector $hat(bold(phi))$ have to be expressed in $x$ and $y$. The starting point is the radial unit vector, which points from the axis to the point under the angle $phi$ with the $x$-axis, see @fig:gen-unit-vectors. Since $cos phi = x \/ rho$ and $sin phi = y \/ rho$,
 
-$ bold(A)^((3)) (x, y, z) = A_phi (sqrt(x^2 + y^2), z) thin (-y hat(bold(x)) + x hat(bold(y))) / sqrt(x^2 + y^2). $ <eq:gen-a-cart>
+$
+  hat(bold(rho)) & = cos phi thin hat(bold(x)) + sin phi thin hat(bold(y)) \
+  & = x / rho thin hat(bold(x)) + y / rho thin hat(bold(y)).
+$ <eq:gen-rho-hat>
 
 #figure(
   image("../images/gen-unit-vectors.svg", width: 55%),
-  caption: [Cartesian unit vectors $hat(bold(x)), hat(bold(y))$ and cylindrical unit vectors $hat(bold(rho)), hat(bold(phi))$ in a point of the $x y$-plane.],
+  caption: [Carthesian and cylindrical unit vectors in a point in the xy-plane],
 ) <fig:gen-unit-vectors>
 
-Since $-y hat(bold(x)) + x hat(bold(y)) = hat(bold(z)) times bold(r)$, with $bold(r) = x hat(bold(x)) + y hat(bold(y)) + z hat(bold(z))$ and $rho = |hat(bold(z)) times bold(r)|$, the potential can be written without reference to a coordinate system as
+The azimuthal unit vector lies in the same plane and is orthogonal to the radial one, $hat(bold(rho)) perp hat(bold(phi))$, in the direction of increasing $phi$. It is therefore the radial unit vector rotated over $+pi \/ 2$:
 
-$ bold(A)(bold(r)) = g(rho, z) thin hat(bold(z)) times bold(r), quad g(rho, z) = (A_phi (rho, z)) / rho. $ <eq:gen-a-free>
+$
+  hat(bold(phi)) & = cos(phi + pi / 2) thin hat(bold(x)) + sin(phi + pi / 2) thin hat(bold(y)) \
+  & = -sin phi thin hat(bold(x)) + cos phi thin hat(bold(y)) \
+  & = -y / rho thin hat(bold(x)) + x / rho thin hat(bold(y)) \
+  & = (-y) / sqrt(x^2 + y^2) thin hat(bold(x)) + x / sqrt(x^2 + y^2) thin hat(bold(y)).
+$ <eq:gen-phi-hat>
 
-The apparent singularity of $g$ on the axis is removable. Since $J_1 (lambda rho) tilde lambda rho \/ 2$ for $rho -> 0$,
+The vector potential behind the shield is purely azimuthal, $bold(A)^((3)) = A_phi (rho, z) thin hat(bold(phi))$. Substituting $rho = sqrt(x^2 + y^2)$ in the argument and @eq:gen-phi-hat for the unit vector gives
 
-$ g(0, z) = lim_(rho -> 0) (A_phi (rho, z)) / rho = 1 / 2 B_z (0, z), $ <eq:gen-g0>
+$
+  bold(A)^((3)) (x, y, z) & = A_phi (rho, z) thin hat(bold(phi)) \
+  & = A_phi (sqrt(x^2 + y^2), z) thin [(-y) / sqrt(x^2 + y^2) thin hat(bold(x)) + x / sqrt(x^2 + y^2) thin hat(bold(y))].
+$ <eq:gen-a-cart>
 
-which is the familiar potential $A_phi = B_z rho \/ 2$ of a locally uniform axial field. A numerical implementation must use this limit whenever the receiving loop passes through or close to the axis.
+== Flux through a laterally displaced loop <sec:gen-displaced>
+@eq:gen-a-cart is first applied to a receiving loop of radius $R$ that is parallel to the source but displaced from its axis, with centre $(x_c, y_c, z_c)$. The flux through the loop follows from Stokes' theorem,
+
+$
+  Phi = integral.double_S bold(B) dot d bold(S) = integral.double_S (nabla times bold(A)) dot d bold(S) = integral.cont_(partial S) bold(A) dot d bold(r).
+$ <eq:gen-stokes>
+
+The loop is parametrised by the angle $alpha in [0, 2 pi)$ around its own centre,
+
+$
+  bold(r)(alpha) & = x(alpha) thin hat(bold(x)) + y(alpha) thin hat(bold(y)) + z_c hat(bold(z)) \
+  & = (x_c + R cos alpha) thin hat(bold(x)) + (y_c + R sin alpha) thin hat(bold(y)) + z_c hat(bold(z)), \
+  d bold(r) & = R (-sin alpha thin hat(bold(x)) + cos alpha thin hat(bold(y))) thin d alpha.
+$ <eq:gen-displaced-loop>
+
+On the loop, the distance to the axis of the source depends on $alpha$,
+
+$ rho(alpha) = sqrt(x^2 (alpha) + y^2 (alpha)) = sqrt((x_c + R cos alpha)^2 + (y_c + R sin alpha)^2), $
+
+and so does the azimuthal unit vector, $hat(bold(phi))(alpha) = (-y(alpha) thin hat(bold(x)) + x(alpha) thin hat(bold(y))) \/ rho(alpha)$. Note that $hat(bold(phi))(alpha)$ differs from the direction $-sin alpha thin hat(bold(x)) + cos alpha thin hat(bold(y))$ of $d bold(r)$ as soon as the loop is displaced; only their dot product enters the flux. Working it out,
+
+$
+  bold(A)^((3)) dot d bold(r) & = A_phi (rho(alpha), z_c) thin hat(bold(phi))(alpha) dot d bold(r) \
+  & = A_phi (sqrt(x^2 (alpha) + y^2 (alpha)), z_c) thin ((-y(alpha)) / rho(alpha) thin hat(bold(x)) + x(alpha) / rho(alpha) thin hat(bold(y))) dot R (-sin alpha thin hat(bold(x)) + cos alpha thin hat(bold(y))) thin d alpha \
+  & = A_phi (rho(alpha), z_c) thin R / rho(alpha) thin (y(alpha) sin alpha + x(alpha) cos alpha) thin d alpha \
+  & = A_phi (rho(alpha), z_c) thin R / rho(alpha) thin ((y_c + R sin alpha) sin alpha + (x_c + R cos alpha) cos alpha) thin d alpha \
+  & = A_phi (rho(alpha), z_c) thin R / rho(alpha) thin (y_c sin alpha + R sin^2 alpha + x_c cos alpha + R cos^2 alpha) thin d alpha \
+  & = A_phi (rho(alpha), z_c) thin R / rho(alpha) thin (y_c sin alpha + x_c cos alpha + R) thin d alpha.
+$
+
+Substituting in @eq:gen-stokes gives the flux through the displaced loop,
+
+$
+  Phi = integral_0^(2 pi) A_phi (rho(alpha), z_c) thin (R (x_c cos alpha + y_c sin alpha + R)) / sqrt((x_c + R cos alpha)^2 + (y_c + R sin alpha)^2) thin d alpha.
+$ <eq:gen-flux-xy>
+
+With $A_phi$ from @eq:gen-a3, written as $A_phi (rho, z) = integral_0^infinity f(lambda, z) J_1 (lambda rho) thin d lambda$ with $f(lambda, z) = 2 mu a i C lambda tau \/ tau_0^2 thin J_1 (lambda a) e^(-tau_0 z - t (tau - tau_0))$, this becomes the double integral
+
+$
+  Phi = integral_0^(2 pi) integral_0^infinity f(lambda, z_c) thin J_1 (lambda rho(alpha)) thin (R (x_c cos alpha + y_c sin alpha + R)) / sqrt((x_c + R cos alpha)^2 + (y_c + R sin alpha)^2),
+$ <eq:gen-flux-xy-double>
+
+ // $rho(alpha) = sqrt((x_c + R cos alpha)^2 + (y_c + R sin alpha)^2)$ as above.
+
+// == Coordinate-free form of the vector potential
+
+// Since $-y hat(bold(x)) + x hat(bold(y)) = hat(bold(z)) times bold(r)$, with $bold(r) = x hat(bold(x)) + y hat(bold(y)) + z hat(bold(z))$ and $rho = |hat(bold(z)) times bold(r)|$, the potential can be written without reference to a coordinate system as
+
+// $ bold(A)(bold(r)) = g(rho, z) thin hat(bold(z)) times bold(r), quad g(rho, z) = (A_phi (rho, z)) / rho. $ <eq:gen-a-free>
+
+// The apparent singularity of $g$ on the axis is removable. Since $J_1 (lambda rho) tilde lambda rho \/ 2$ for $rho -> 0$,
+
+// $ g(0, z) = lim_(rho -> 0) (A_phi (rho, z)) / rho = 1 / 2 B_z (0, z), $ <eq:gen-g0>
+
+// which is the familiar potential $A_phi = B_z rho \/ 2$ of a locally uniform axial field. A numerical implementation must use this limit whenever the receiving loop passes through or close to the axis.
 
 == Pose of the receiving loop as a rigid transformation
 #figure(
@@ -73,19 +149,17 @@ $
 $ <eq:gen-et>
 
 == Flux through the receiving loop
-The flux through the receiving loop follows from Stokes' theorem,
+The flux through the receiving loop again follows from Stokes' theorem, @eq:gen-stokes, where $S$ may be taken as the flat disc bounded by the loop. Region 3 is a half-space and therefore convex, so the disc lies in region 3 together with its boundary, and @eq:gen-a3 is valid on all of $S$. Because $nabla dot bold(B) = 0$, the result does not depend on the chosen spanning surface, nor on the gauge of $bold(A)$.
 
-$
-  Phi = integral.double_S bold(B) dot d bold(S) = integral.double_S (nabla times bold(A)) dot d bold(S) = integral.cont_(partial S) bold(A) dot d bold(r),
-$ <eq:gen-stokes>
-
-where $S$ may be taken as the flat disc bounded by the loop. Region 3 is a half-space and therefore convex, so the disc lies in region 3 together with its boundary, and @eq:gen-a3 is valid on all of $S$. Because $nabla dot bold(B) = 0$, the result does not depend on the chosen spanning surface, nor on the gauge of $bold(A)$.
-
-Substituting @eq:gen-a-free and using the cyclic property of the scalar triple product, $(hat(bold(z)) times bold(r)) dot d bold(r) = hat(bold(z)) dot (bold(r) times d bold(r))$. With @eq:gen-loop and @eq:gen-et,
+Substituting x and using the cyclic property of the scalar triple product, $(hat(bold(z)) times bold(r)) dot d bold(r) = hat(bold(z)) dot (bold(r) times d bold(r))$. With @eq:gen-loop and @eq:gen-et,
 
 $ bold(r) times d bold(r) = (bold(c) + R hat(bold(e))) times R hat(bold(t)) thin d alpha = R (bold(c) times hat(bold(t)) + R hat(bold(n))) thin d alpha, $
 
-so that the flux reduces to the single integral
+so that
+
+$ bold(A) dot d bold(r) = g(rho, z) thin (hat(bold(z)) times bold(r)) dot d bold(r) = g(rho, z) thin R [R n_z + hat(bold(z)) dot (bold(c) times hat(bold(t)))] thin d alpha, $ <eq:gen-adr>
+
+and the flux reduces to the single integral
 
 $
   Phi = R integral_0^(2 pi) g(rho(alpha), z(alpha)) [R n_z + hat(bold(z)) dot (bold(c) times hat(bold(t))(alpha))] d alpha,
@@ -109,13 +183,11 @@ The configurations treated in the literature are special cases of @eq:gen-flux, 
 
 _Coaxial, parallel loops._ For $bold(c) = z_c hat(bold(z))$ and $bold(Q) = bold(I)$, one has $rho(alpha) = R$ and $z(alpha) = z_c$, while $bold(c) times hat(bold(t))$ is perpendicular to $hat(bold(z))$. @eq:gen-flux becomes $Phi = 2 pi R A_phi (R, z_c)$, the loop-to-loop coupling of @moser2.
 
-_Parallel, laterally displaced loops._ For $bold(Q) = bold(I)$, so that $hat(bold(u)) = hat(bold(x))$, $hat(bold(v)) = hat(bold(y))$ and $n_z = 1$,
+_Parallel, laterally displaced loops._ For $bold(Q) = bold(I)$, so that $hat(bold(u)) = hat(bold(x))$, $hat(bold(v)) = hat(bold(y))$ and $n_z = 1$, the offset term becomes $x_c cos alpha + y_c sin alpha$ and @eq:gen-flux reduces to
 
-$
-  Phi = R integral_0^(2 pi) g(rho(alpha), z_c) (R + x_c cos alpha + y_c sin alpha) thin d alpha,
-$ <eq:gen-flux-xy>
+$ Phi = R integral_0^(2 pi) g(rho(alpha), z_c) (R + x_c cos alpha + y_c sin alpha) thin d alpha, $
 
-with $rho^2 (alpha) = (x_c + R cos alpha)^2 + (y_c + R sin alpha)^2$. The same result follows directly from @eq:gen-a-cart: with $x = x_c + R cos alpha$, $y = y_c + R sin alpha$ and $d bold(r) = R (-sin alpha thin hat(bold(x)) + cos alpha thin hat(bold(y))) thin d alpha$, one has $bold(A) dot d bold(r) = g R (x cos alpha + y sin alpha) thin d alpha = g R (R + x_c cos alpha + y_c sin alpha) thin d alpha$.
+which, with $g = A_phi \/ rho$, is exactly @eq:gen-flux-xy of @sec:gen-displaced.
 
 _Small receiving loop._ For $R -> 0$ the flux density is uniform over the disc and $Phi -> pi R^2 thin hat(bold(n)) dot bold(B)^((3)) (bold(c))$. On the axis and with $hat(bold(n)) = hat(bold(z))$, the ratio of the open and shielded flux reduces to the point-wise SE of Moser, @eq:moser-se.
 
