@@ -94,12 +94,12 @@
   /// exactly as kulemt does when a programme defines none.
   /// -> dictionary | auto
   address: auto,
-  /// hyperref colorlinks, as in the reference PDF: internal links red,
-  /// citations green, URLs magenta. Set to none for black.
-  /// -> color | none
+  /// Colour of the entries in the outlines. Note: `none` is not accepted here.
+  /// -> color
   link-color: red,
+  /// Colour of citations. Set to none for black.
   /// -> color | none
-  cite-color: green,
+  cite-color: none,
   /// -> color | none
   url-color: rgb("#ee2299"),
   /// Append the official GenAI transparency statement. Mandatory for a
@@ -171,14 +171,26 @@
   set text(font: "New Computer Modern", lang: language, size: font-size)
   set par(first-line-indent: 1em, spacing: 0.65em, justify: true)
   set heading(numbering: "1.1.1")
-  set figure(numbering: it => context {
-    let count = counter(heading).get()
-    numbering("1.1", count.at(0), it)
+  // Chapter-relative numbers; the counters are reset at each chapter heading.
+  // No inner `context`: a reference would otherwise take the chapter it is written in.
+  set figure(numbering: it => numbering("1.1", counter(heading).get().at(0), it))
+  set math.equation(numbering: it => numbering("(1.1)", counter(heading).get().at(0), it))
+
+  // Short forms for references only: captions and chapter titles keep their
+  // full supplement. Appendices and other figure kinds stay as they are.
+  set ref(supplement: it => {
+    let func = it.func()
+    if func == math.equation { "eqn." }
+    else if func == heading and it.supplement == [Chapter] { "ch." }
+    else if func == figure and it.kind == image { "fig." }
+    else if func == figure and it.kind == table { "tbl." }
+    else { it.supplement }
   })
 
   // Installed unconditionally: a `show` rule inside an `if` block would only
   // apply to the rest of that block.
-  show ref: it => if link-color == none { it } else { text(link-color, it) }
+  show ref: set text(weight: "bold")
+  show cite: set text(weight: "bold")
   show cite: it => if cite-color == none { it } else { text(cite-color, it) }
   show link: it => if url-color == none { it } else { text(url-color, it) }
 
@@ -313,7 +325,10 @@
 
         show heading.where(level: 1): it => {
           pagebreak(weak: true, to: chapter-to)
-          context counter(figure.where(kind: image)).update(0)
+          for kind in (image, table, raw) {
+            counter(figure.where(kind: kind)).update(0)
+          }
+          counter(math.equation).update(0)
           block[
             // An unnumbered level-1 heading in the main matter -- the
             // transparency statement, for one -- has `numbering: none`, and

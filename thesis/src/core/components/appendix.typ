@@ -24,6 +24,8 @@
   pagebreak(weak: true, to: to)
 
   set heading(numbering: "A.1")
+  set figure(numbering: it => numbering("A.1", counter(heading).get().at(0), it))
+  set math.equation(numbering: it => numbering("(A.1)", counter(heading).get().at(0), it))
   counter(heading).update(0)
   appendices
 }

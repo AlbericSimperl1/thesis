@@ -4,7 +4,19 @@
 // be compared page by page against the reference PDF the CI builds.
 //
 #import "src/lib.typ": template
-
+#show math.equation.where(block: true): it => {
+  if it.numbering == none { return it }
+  // formule zonder nummer, centraal in het tekstblok
+  let num = context counter(math.equation).display(it.numbering)
+  block(width: 100%, {
+    align(center, math.equation(block: true, numbering: none, it.body))
+    place(
+      right + horizon,
+      dx: 3.5em,   // hoever het nummer buiten het tekstblok staat
+      num,
+    )
+  })
+}
 #show: template.with(
   title: "Analytical Evaluation of Magnetic Shielding Effectiveness of Infinite Planar Screens under Near-Field Conditions",
   // subtitle: "State of the Art",
@@ -113,12 +125,6 @@
     it
   }
 }
-
-// Chapter-relative equation numbers, mirroring the figure numbering in src/lib.typ.
-#set math.equation(numbering: it => context {
-  let count = counter(heading).get()
-  numbering("(1.1)", count.at(0), it)
-})
 
 #include "sections/1-intro.typ"
 #include "sections/2-physics.typ"

@@ -55,7 +55,10 @@
       let chapter-number = counter(heading).at(location).at(0)
       if it.element.caption != none {
         let figure-number = it.element.caption.counter.at(location).at(0)
-        numbering("1.1", chapter-number, figure-number)
+        // Appendices number as A.1: follow the pattern of the enclosing chapter.
+        let chapter = query(selector(heading.where(level: 1)).before(location)).at(-1, default: none)
+        let pattern = if chapter == none or chapter.numbering == none { "1.1" } else { chapter.numbering }
+        numbering(pattern, chapter-number, figure-number)
       } else { "" }
     }
     link(location, it.indented(text(fill: link-color)[#number], rest))
