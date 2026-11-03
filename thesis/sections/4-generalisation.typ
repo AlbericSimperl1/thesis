@@ -1,27 +1,27 @@
 = Generalisation to an arbitrarily placed receiving loop <sec:generalisation>
 
-The closed-form results of @sec:literature give the field behind the shield only in the coaxial configuration, observed either in a point on the axis @moser1 @moser1988 or with a receiving loop that is coaxial with and parallel to the source @moser2. In this chapter the receiving loop is given an arbitrary position and orientation. No new boundary-value problem has to be solved for this: the axisymmetric solution behind the shield is retained, and only the receiving loop is moved by a rigid transformation. The flux it captures then follows from a single line integral.
+The closed-form results of @sec:literature give the field behind the shield only in the coaxial configuration, observed either in a point on the axis @moser1 @moser1988 or with an RX loop that is coaxial with and parallel to the source @moser2. In this chapter the RX loop is given an arbitrary position and orientation. No new boundary-value problem has to be solved for this: the axisymmetric solution behind the shield is retained, and only the receiving loop is moved by an affine, rigid transformation. The flux it captures then follows from a single line integral.
 
 The only result taken from the literature is Moser's axisymmetric vector potential behind the shield. Everything built on it in this chapter is the contribution of this thesis:
 
-- the Cartesian and coordinate-free form of that potential, including its regular behaviour on the axis;
-- the description of the receiving loop as a rigid transformation in $"SE"(3)$;
-- the flux through a loop in an arbitrary pose, reduced via Stokes' theorem to one integral over the loop;
-- the invariances that reduce the six pose parameters to four;
-// - an orientation parametrisation based on unit quaternions, replacing Euler angles;
-- the condition under which the result is valid;
+- the Cartesian and coordinate-free form of that potential, including its regular behaviour on the axis.
+- the description of the receiving loop as a rigid transformation in $"SE"(3)$.
+- the flux through a loop in an arbitrary pose, reduced via Stokes' theorem to one integral over the loop.
+- the invariances that reduce the six pose parameters to four.
+// - an orientation parametrisation based on unit quaternions, replacing Euler angles.
+- the condition under which the result is valid.
 - the SE for an arbitrary pose, and the poses for which it is not defined.
 
 == Assumptions and geometry <sec:gen-geometry>
 The global frame $(O; hat(bold(x)), hat(bold(y)), hat(bold(z)))$ is attached to the transmitting loop, a filamentary circular loop of radius $a$ carrying a current $i$, centred in $O$ in the plane $z = 0$. The shield is the slab $b <= z <= c$ of @sec:literature, of thickness $t = c - b$, so that region 3 is the half-space $z > c$. The receiving loop is a filamentary circular loop of radius $R$. The analysis rests on four assumptions.
 
 + The quasi-static conditions of @sec:physics hold, so that $tau_0 = lambda$ in @eq:moser-tau.
-+ The receiving loop is open-circuited, or loaded by a high impedance, so that its own current perturbs neither the source nor the eddy currents in the shield. Its open-circuit voltage is then $V = -j omega Phi$, with $Phi$ the flux through the loop.
++ The receiving loop is open-circuited, or loaded by a high impedance, so that its own current has no effect on either the source nor the eddy currents in the shield. Its open-circuit voltage is then $V = -j omega Phi$.
 + The receiving loop lies entirely in region 3.
-+ The shield is of infinite transverse extent, so that source and shield together remain axisymmetric about the $z$-axis.
++ The shield extends infinitely, so that source and shield together remain axisymmetric about the $z$-axis.
 
 == Vector potential behind the shield
-Under these assumptions the field in region 3 is the one derived by Moser @moser1. Denoting the cylindrical radius by $rho$, to keep $bold(r)$ free for the position vector, it reads
+Under these assumptions the field in region 3 is the one derived by Moser @moser1. Denoting the cylindrical radius by $rho$, to keep $bold(r)$ free for the position vector,
 
 $
   bold(A)^((3)) = A_phi (rho, z) thin hat(bold(phi)), quad
@@ -31,7 +31,7 @@ $ <eq:gen-a3>
 with $mu = mu_0 mu_r$, $tau$ and $tau_0$ from @eq:moser-tau and $C$ from @eq:moser-c. Without the shield, $A_phi$ is given by @eq:moser-a with $r$ replaced by $rho$. The derivation below only uses that $bold(A)$ is azimuthal and axisymmetric.
 
 == Unit vector transform <sec:gen-unit-vectors>
-To evaluate @eq:gen-a3 in a Carthesian point $(x, y, z)$, both the argument $rho$ and the unit vector $hat(bold(phi))$ have to be expressed in $x$ and $y$. The starting point is the radial unit vector, which points from the axis to the point under the angle $phi$ with the $x$-axis, see @fig:gen-unit-vectors. Since $cos phi = x \/ rho$ and $sin phi = y \/ rho$,
+To evaluate @eq:gen-a3 in a Carthesian point $(x, y, z)$, both the argument $rho$ and the unit vector $hat(bold(phi))$ have to be expressed in $x$ and $y$. The starting point is the radial unit vector, which points from the axis to the point under the angle $phi$ with the $x$-axis, as depicted in @fig:gen-unit-vectors. Since $cos phi = x \/ rho$ and $sin phi = y \/ rho$,
 
 $
   hat(bold(rho)) & = cos phi thin hat(bold(x)) + sin phi thin hat(bold(y)) \
@@ -107,7 +107,7 @@ $
 Substituting in @eq:gen-stokes gives the flux through the displaced loop,
 
 $
-  Phi = integral_0^(2 pi) tilde(A)_phi (x (alpha), y (alpha), z_0) thin (R thin (x_0 cos alpha + y_0 sin alpha + R)) / rho(alpha) thin d alpha.
+  Phi = integral_0^(2 pi) tilde(A)_phi (x (alpha), y (alpha), z_0) thin R / rho(alpha) thin (x_0 cos alpha + y_0 sin alpha + R) thin d alpha.
 $ <eq:gen-flux-xy>
 
 With $A_phi$ from @eq:gen-a3, written as $A_phi (rho, z) = integral_0^infinity F(lambda, z) J_1 (lambda rho) thin d lambda$ with $F(lambda, z) = 2 mu a i C lambda tau \/ tau_0^2 thin J_1 (lambda a) e^(-tau_0 z - t (tau - tau_0))$, this becomes the double integral

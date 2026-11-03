@@ -25,7 +25,7 @@
   academic-year: (2026, 2027),
 
   authors: ("Albéric Simperl", ""),
-  promotors: ("Prof. dr. ir. Davy Pissoort", "Ir. Lirim Koraqi"),
+  promotors: ("Prof. dr. ir. Davy Pissoort", "dr. ir. Lirim Koraqi"),
   // assessors: ("Ir. Kn. Owsmuch", "K. Nowsrest"),
   // supervisors: ("Ir. An Assistent", "A. Friend"),
 

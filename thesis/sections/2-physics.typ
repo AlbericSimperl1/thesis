@@ -11,7 +11,7 @@ Inside a shield of conductivity $sigma$ the ratio of displacement to conduction 
 
 $ nabla^2 bold(H) = j omega mu sigma bold(H), quad gamma = sqrt(j omega mu sigma) = (1 + j) / delta, quad delta = sqrt(2 / (omega mu sigma)), $ <eq:diffusion>
 
-with $delta$ the skin depth. The field inside the shield does not propagate but diffuses, and the governing length scale is $delta$ rather than $lambda$.
+with $delta$ the skin depth. The field inside the shield does not propagate but diffuses the courant length scale will be $delta$ rather than $lambda$.
 
 The wave impedance of the source decides which kind of shielding is required. For a small loop and a short electric dipole the near-field wave impedances behave as
 
@@ -24,7 +24,7 @@ For electric shielding the situation is comparatively trivial. The intrinsic imp
 
 $ Z_s = sqrt((j omega mu) / sigma) = (1 + j) / (sigma delta), $ <eq:zs>
 
-is of the order of micro-ohms at low frequency. Against the high-impedance field of @eq:zw this is an extreme mismatch, so an incident electric field is almost entirely reflected at the surface. Through charge redistribution in the conductor rather than diffusion through it, and the shield behaves as an equipotential surface.
+is of the order of micro-ohms at low frequency. Against the high-impedance field of @eq:zw this is an extreme mismatch, so an incident electric field is almost entirely reflected at the surface. This happens through charge redistribution in the conductor rather than diffusion through it.
 
 The same mismatch is nearly absent for a low-impedance magnetic source, and reflection is weak. The shield must then act either by dissipating the field in induced currents or by offering the flux a low-reluctance path. These two mechanisms correspond to the two material classes discussed next.
 
@@ -50,7 +50,7 @@ combined with $bold(B) = mu bold(H)$ in both media, gives the refraction law for
 
 $ frac(tan theta_2, tan theta_1) = frac(mu_2, mu_1) = mu_r. $ <eq:refraction>
 
-For $mu_r >> 1$, a field incident at any appreciable angle is refracted to $theta_2 -> 90 degree$, meaning that the field inside the shield runs almost parallel to the sheet. Meaning the flux is drawn along the screen and guided away from the shielded region, which is what is observed macroscopically as a deflection of the field lines into the shield material.
+For $mu_r >> 1$, a field incident is refracted to $theta_2 -> 90 degree$, meaning that the field inside the shield runs almost parallel to the sheet. Meaning the flux is drawn along the screen and guided away from the shielded region, which is what is observed macroscopically as a deflection of the field lines into the shield material.
 
 #figure(
   image("../images/schildM.png", width: 50%),
@@ -61,7 +61,7 @@ For closed or finite geometries the same behaviour is often described by the lum
 
 $ Theta = Phi cal(R), $ <eq:hopkinson>
 
-relates the magnetomotive force $Theta$ to the flux $Phi$, analogous to Ohm's law. As current over parallel resistors, the flux divides over parallel paths in inverse proportion to their reluctance, so that for $cal(R)_"shield" << cal(R)_"air"$ almost all flux follows the shield. It should be stressed that this description presupposes a well-defined flux path, which does not exist within an infinite planar sccreen. The reluctance has neither a unique $l$ nor a unique $A$ in that geometry. The magnetic-circuit picture is retained here as physical intuition only, while @eq:refraction is the formulation used in the analysis.
+relates $Theta$ to the flux $Phi$, analogous to Ohm's law. Like the current over parallel resistors, the flux divides over parallel paths in inverse proportion to their reluctance, so that for $cal(R)_"shield" << cal(R)_"air"$ almost all flux follows the shield. Important is that this description assumes a well-defined flux path, which does not exist within an infinite planar screen. The reluctance has neither a unique $l$ nor a unique $A$ in that geometry. The magnetic-circuit picture is retained here as physical intuition only, while @eq:refraction is the formulation used in the analysis.
 
 
 == Combined mechanisms and limits of the linear description
@@ -72,7 +72,7 @@ All of the above assumes a linear, homogeneous and isotropic medium. For ferroma
 
 
 == Characteristic length and time scales
-Skin depth alone is not sufficient to predict the behaviour of a shield. For a screen of thickness $t$ the governing dimensionless parameter is the ratio $t \/ delta$, which separates two distinct regimes.
+The skin depth alone is not sufficient to predict the behaviour of a shield. For a screen with thickness $t$ the governing dimensionless parameter is the ratio $t \/ delta$, which separates two distinct regimes.
 
 For $t >> delta$ the field is attenuated exponentially inside of the material and absorption dominates. For $t << delta$ the field is essentially uniform across the thickness, absorption vanishes, and the shielding is produced entirely by the field of the induced current. This thin-shield regime is the one in which thin metal sheets at low frequency operate, and it is the regime addressed by the classical eddy-current analyses discussed in @sec:literature.
 
@@ -80,16 +80,16 @@ In the thin-shield regime the shield has a characteristic diffusion time, which 
 
 $ tau tilde mu sigma t d, $ <eq:tau>
 
-with the associated corner frequency $f_c tilde 1 \/ (2 pi tau)$. Below $f_c$ the induced currents are too weak to react appreciably and the SE tends to $0$ dB; above it the SE rises at approximately $20$ dB per decade. Equivalently, the behaviour is governed by the dimensionless shielding parameter $omega mu sigma t d$, which plays the role of a magnetic Reynolds number for the configuration. The proportionality in @eq:tau is a scaling relation; the exact prefactor depends on the geometry and follows from the closed-form solutions of @sec:literature.
+with the associated corner frequency $f_c tilde 1 \/ (2 pi tau)$. Below $f_c$ the induced currents are too weak to have any significant reaction and the SE tends to $0$ dB. Above this frequency the SE rises at approximately $20$ dB per decade. Equivalently, the behaviour is governed by the dimensionless shielding parameter $omega mu sigma t d$, which plays the role of a magnetic Reynolds number for the configuration. The proportionality in @eq:tau is a scaling relation, the exact scalar depends on the geometry and follows from the closed-form solutions of @sec:literature.
 
-Two consequences are worth noting. First, the corner frequency depends on the geometry through $d$, so the SE of a planar screen is not a material property alone. Second, since $f_c$ scales inversely with $mu sigma t$, high-permeability and high-conductivity shields reach their useful range at lower frequencies, which is precisely why material choice is frequency-dependent.
+Two consequences are worth noting. Firstly, $f_c$ depends on the geometry through $d$, so the SE of a planar screen is not just a material property. Secondly, since $f_c$ scales inversely with $mu sigma t$, high-permeability and high-conductivity shields reach a useful range at lower frequencies, which is precisely why material choice is frequency-dependent.
 
 == The plane-wave spectrum of a loop source <sec:spectrum>
 The difference between near-field and far-field shielding lies in the spatial spectrum of the emitted field. As stated in the introduction, within the near field, we find the incident field to behave as a plane wave. This wave contains a single transverse wavenumber, whereas the near field of a finite loop contains a continuum of them.
 
-Expanding the field of a circular loop of radius $a$ in cylindrical coordinates yields a Sommerfeld-type integral over the transverse wavenumber $lambda$, in which each spectral component carries a Bessel factor $J_1 (lambda a)$ set by the loop geometry and decays away from the source plane as $e^(lambda |z|)$. In the quasi-static regime $lambda >> k$ for all components that carry appreciable energy, so the spectrum is essentially entirely evanescent. The dominant transverse wavenumbers are determined by the geometry, $lambda tilde 1 \/ a$ and $lambda tilde 1 \/ d$, and not by the frequency.
+Expanding the field of a circular loop of radius $a$ in cylindrical coordinates yields a Sommerfeld-integral over the transverse wavenumber $lambda$, in which each spectral component carries a Bessel factor $J_1 (lambda a)$ set by the loop geometry and decays away from the source plane as $e^(lambda |z|)$. In the quasi-static regime $lambda >> k$ for all components that carry some energy, so basically the full spectrum is volatile. The dominant $lambda$ are determined by the geometry, $lambda tilde 1 \/ a$ and $lambda tilde 1 \/ d$, and not by the frequency.
 
-Each spectral component sees the shield at its own effective angle of incidence and is therefore transmitted with its own transmission coefficient $T(lambda)$. The total shielded field is the superposition
+Each spectral component sees the shield at its own angle, therefore it transmits with its own transmission coefficient $T(lambda)$. The total shielded field is the superposition
 
 $
   bold(H)_"closed" (bold(r)) = integral_0^infinity T(lambda) thin tilde(bold(H))(lambda) thin e^(lambda |z|) thin d lambda,
